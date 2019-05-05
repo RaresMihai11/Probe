@@ -13,7 +13,9 @@
 #include <dht/dht.h>
 
 
- int SENSOR_PIN = 2;
+#ifndef SENSOR_PIN
+#error SENSOR_PIN is not specified
+#endif
 
 static void wifi_init() {
     struct sdk_station_config wifi_config = {
