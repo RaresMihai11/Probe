@@ -13,7 +13,7 @@
 #include <dht/dht.h>
 
 
-const int SENSOR_PIN= 2;
+ int SENSOR_PIN = 2;
 
 static void wifi_init() {
     struct sdk_station_config wifi_config = {
