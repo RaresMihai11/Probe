@@ -13,10 +13,7 @@
 #include <dht/dht.h>
 
 
-#ifndef SENSOR_PIN
-#error SENSOR_PIN is not specified
-#endif
-
+const int SENSOR_PIN= 2;
 
 static void wifi_init() {
     struct sdk_station_config wifi_config = {
@@ -44,7 +41,7 @@ void temperature_sensor_task(void *_args) {
     float humidity_value, temperature_value;
     while (1) {
         bool success = dht_read_float_data(
-            DHT_TYPE_DHT11, SENSOR_PIN,
+            DHT_TYPE_DHT22, SENSOR_PIN,
             &humidity_value, &temperature_value
         );
         if (success) {
@@ -70,7 +67,7 @@ homekit_accessory_t *accessories[] = {
     HOMEKIT_ACCESSORY(.id=1, .category=homekit_accessory_category_thermostat, .services=(homekit_service_t*[]) {
         HOMEKIT_SERVICE(ACCESSORY_INFORMATION, .characteristics=(homekit_characteristic_t*[]) {
             HOMEKIT_CHARACTERISTIC(NAME, "Temperature Sensor"),
-            HOMEKIT_CHARACTERISTIC(MANUFACTURER, "HaPK"),
+            HOMEKIT_CHARACTERISTIC(MANUFACTURER, "R"),
             HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "0012345"),
             HOMEKIT_CHARACTERISTIC(MODEL, "MyTemperatureSensor"),
             HOMEKIT_CHARACTERISTIC(FIRMWARE_REVISION, "0.1"),
