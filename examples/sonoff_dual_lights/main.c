@@ -243,7 +243,7 @@ void create_accessory_name() {
 }
 
 void user_init(void) {
-    uart_set_baud(0, 115200);
+    uart_set_baud(0, 9600);
 
     create_accessory_name();
 
